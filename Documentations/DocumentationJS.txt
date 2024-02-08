@@ -1,0 +1,193 @@
+const mensagem = "Bom te ver aqui! "
+alert(mensagem = (10 * 100) + " abraços")
+// bom te ver aqui! 1000 abraços
+
+
+ARRAY OU VETORES []
+vamos fazer uma estrutura de dados, para agrupar muitos valores
+como as perguntas
+
+Objetos {} vamos utilizar programação orientada a objetos para 
+fazer a estrutura de dados junto aos []
+
+------------------------------------------------------------------------------------
+
+const perguntas = [
+  {
+    pergunta: "O que significa a sigla HTML?",
+    respostas: [
+      "Hypertext Markup Language",
+      "Hyper Transfer Markup Language",
+      "High-level Text Markup Language",
+    ],
+    correta: 0
+  },
+  {
+    pergunta: "Qual é a função do comando 'console.log()' em JavaScript?",
+    respostas: [
+      "Imprimir algo no console",
+      "Executar uma função específica",
+      "Criar uma variável",
+    ],
+    correta: 0
+  },
+  {
+    pergunta: "O que é um array em JavaScript?",
+    respostas: [
+      "Um tipo de dado que armazena apenas números",
+      "Um objeto que armazena apenas strings",
+      "Uma estrutura que armazena uma coleção de elementos",
+    ],
+    correta: 2
+  },
+  {
+    pergunta: "Como declarar uma variável em JavaScript?",
+    respostas: [
+      "let myVar = 10;",
+      "const myVar = 'Hello';",
+      "var myVar = true;",
+    ],
+    correta: 1
+  },
+  {
+    pergunta: "O que é o DOM em JavaScript?",
+    respostas: [
+      "Um modelo de desenvolvimento online",
+      "Document Object Model",
+      "Diretório de Operações Múltiplas",
+    ],
+    correta: 1
+  },
+  {
+    pergunta: "Qual a diferença entre '==' e '===' em JavaScript?",
+    respostas: [
+      "Não há diferença, ambos são iguais",
+      "O primeiro compara apenas valores, o segundo compara valores e tipos",
+      "O primeiro compara apenas tipos, o segundo compara valores e tipos",
+    ],
+    correta: 1
+  },
+  {
+    pergunta: "O que é uma função em JavaScript?",
+    respostas: [
+      "Um tipo de dado",
+      "Um bloco de código reutilizável",
+      "Uma condição de controle de fluxo",
+    ],
+    correta: 1
+  },
+  {
+    pergunta: "Qual é o operador lógico 'AND' em JavaScript?",
+    respostas: [
+      "&&",
+      "||",
+      "!",
+    ],
+    correta: 0
+  },
+  {
+    pergunta: "Como realizar um loop 'for' em JavaScript?",
+    respostas: [
+      "for (i = 0; i < 10; i++)",
+      "loop (i = 0; i < 10; i++)",
+      "while (i < 10; i++)",
+    ],
+    correta: 0
+  },
+  {
+    pergunta: "O que é JSON em JavaScript?",
+    respostas: [
+      "Uma linguagem de programação",
+      "JavaScript Object Notation",
+      "Uma biblioteca de gráficos",
+    ],
+    correta: 1
+  },
+];
+
+/*Vamos mapear o HTML e modificar/clonar em cada pergunta usando o
+DOM (modificando o documento com JS) e usando o 
+FOR (LOOP ou Laço de repetição)*/
+
+/*estamos usando o dot notation, que é o . entre document e querySelector('')
+acessando metodos e propriedades
+document estamos usando o DOM para modificar o HTML com JS
+querySelector('') função nativa JS de pesquisa*/
+
+/*criamos uma nova div no HTML com id QUIZ que vamos usar nessa const para
+modificarmos o documento HMTL baseado no que está na TAG TEMPLATE*/
+
+const quiz = document.querySelector('#quiz')
+
+//esse template é de fato o que está no HTML, que é o seletor
+
+const template = document.querySelector('template')
+
+const corretas = new Set() // estamos aqui criando algo novo com new, que é nativo do JS, o Set() vai adciona ou retirar, como uma nova estrutura de dados e sem correr o risco de repetição dentro, com o Set criado ele é um objeto que vai dar opções dentro do FOR > Arrow Function > IF.
+
+const totalDePerguntas = perguntas.length // length vai somar e nos trazer o tamanho total do array, ou seja 10
+
+
+const mostrarTotal = document.querySelector('#acertos span') //aqui estamos dizendo que queremos pegar do HTML para modificar no JS apenas o que está no bloco ID acertos dentro da TAG Span
+
+/*agora criamos o LOOP ou laço de repetição
+estamos criando uma constante chamada item que vai se repetir na const perguntas
+que criamos da nossa estrutura de dados, assim modificando em loop nosso 
+HTML*/
+
+/*vamos criar o quizItem para ser o conteudo do template que será clonado com a função
+o NÓ ou TAGS, vamos passar um true pois estamos dizendo que queremos clonar todos 
+os filhos dentro da TAG TEMPLATE
+
+const quizItem = template.content.cloneNode(true)*/
+
+/*quizItem.querySelector('h3').textContent = item.pergunta
+nesse caso estamos dizendo que a informação que está na tag H3 dentro do HTML
+ é igual ao valor que está na chave pergunta do objeto item, e isso vai se
+repetir no LOOP*/
+
+/*agora vamos usar o prox metodo para dizer que o quiz é filho do quizItem
+
+quiz.appendChild(quizItem)*/
+
+/* Agora vamos fazer uma nova estrutura de repetição para modificar as respostas
+de cada pergunta, ou seja um FOR dentro de um FOR
+vamos usar o let para modificar, como em item já falamos que acessamos 
+perguntas, vamos usar item.resposta que seria o mesmo que perguntas.resposta
+para acessar ao objeto, estamos acessando pelo FOR*/
+
+
+for(const item of perguntas) {
+  const quizItem = template.content.cloneNode(true) //clona
+  quizItem.querySelector('h3').textContent = item.pergunta //modifica H3
+  
+
+  for(let resposta of item.respostas) {
+    const dt = quizItem.querySelector('dl dt').cloneNode(true) //dentro de cada dl pai temos um dt filho, estamos acessando pelo quiz Item que já falamos que esta no objeto pergunta e resposta e estamos clonando 
+  dt.querySelector('span').textContent = resposta //informamos que dentro da constante dt temos a tag span no html e ela é = a variavel resposta que é nossas respostas na estrutura de dados, ou seja vamos modificar o conteudo do span 
+
+  dt.querySelector('input').setAttribute('name', 'pergunta-' + perguntas.indexOf(item)) // Aqui estamos separando em perguntas, anteriormente se eu seleciona-se a resposta 1 da pergunta 1 e depois a resposta 2 da pergunta 2, tirava a seleção da pergunta 1, agora entendemos como blocos que cada pergunta tem 3 opções e apenas 1 é possivel
+
+  dt.querySelector('input').value = item.respostas.indexOf(resposta) // aqui estamos modificando o valor do input para cada pergunta indicando que ele vai rodar a verificação 3 vezes em cada uma das perguntas dentro do laço de repetição e da estrutura de dados
+
+ 
+  dt.querySelector('input').onchange = (event) =>{
+    const estaCorreta = event.target.value == item.correta
+
+    corretas.delete(item) //aqui em caso de troca de opções e se torne um false ele retira do montante que foi inserido no IF anteriormente
+    if(estaCorreta){
+      corretas.add(item) //com a const correta estamos add toda a estrutura de dados inicial, para fazer a contagem sem repetições
+    }
+    mostrarTotal.textContent = corretas.size + ' de ' + totalDePerguntas // nesse momento estamos pegando o que selecionamos dentro de span e modificando, corretas.size é o total de corretas dentro do laço de repetição, concatenando com o de, que concatena com o total do array perguntas
+  }
+
+ //Acima estamos selecionando novamente o input, colocando um metodo de onchange informando que vai ser feito alguma ação, assim agora estamos realizando uma arrow function para realizar a ação que queremos através da função, dentro da função vamos usar uma constante que vai pegar o valor clicado do evento, ou seja a opção clicada, e retorna, 0, 1, 2, só que em string, por essa razão estamos usando o comparador lógico = = para verificar se dentro da constante item, que se refere a perguntas se o valor que está na chave correta é igual ou não, assim sendo essa constante criada dentro da arrow function vai nos retorna um boolean (true or false).
+
+  quizItem.querySelector('dl').appendChild(dt) //agora mostramos na tela toda a modificação por resposta (HTML DL > DT > SPAN) - sempre no final
+  
+  }
+
+  quizItem.querySelector('dl dt').remove()//agora fora do laço onde estão as respostas, aplicamos o remove para retirar o texto que usamos de padrão dentro do (HTML DL > DT > SPAN)
+
+  quiz.appendChild(quizItem) //agora mostramos na tela toda modificação por pergunta (HTML H3) - sempre no final
+}

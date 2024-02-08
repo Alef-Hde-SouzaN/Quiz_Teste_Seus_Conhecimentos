@@ -1,0 +1,177 @@
+/* Declaração pode ter uma ou varias propriedades dentro do bloco
+podemos estilizar usando a TAG, pelo proprio nome, o ID atraves da # e o nome do ID e pela Class atraves do . e o nome da class
+
+podemos estilizar tudo, cor, bordas, letras, tamanhos, grid, etc
+
+lembrando que ordem de estilização é horária
+nos casos de margin (referente a borda para o externo) ou padding (referente a borda para o interno)
+se colocar 1 valor vai modificar os 4 cantos
+2 valores, o primeiro valor vai motificar superior e inferior, o segundo vai modificar direita e esquerta
+colocando 4 valores vai modificar em sentido horário
+
+tudo que colocamos após chama a tag, class, id, etc, que vem com : igual o :root se chama pseudo-selector
+
+*/
+
+/* estamos importando uma fonte do google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* abaixo estamos estilizando toda a pagina HTML quando colocamos * e root com as opções de fontes */
+
+/* box-sizing: border-box; essa estratégia é para estilização de contar de borda a borda para ficar melhor formatado */
+
+*, :root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  background-color: #0F172A;
+}
+
+/* estamos estilizando o conteudo referente a parte interna do bloco e externa */
+
+main {
+  padding: 20px;
+  max-width: 640px;
+  margin: 0 auto 64px;
+}
+
+header {
+  margin-top: 64px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #334155;
+}
+
+/* no caso não colocamos uma class ou id no h1, então como queremos estilizar apenas ele, colocamos a tag pai primeiro e depois a tag filho que é ele */
+
+header h1 {
+  margin-top: 24px;
+  font-size: 30px;
+  color: #F1F5F9;
+}
+
+/* estamos resetando a contagem */
+#quiz {
+  counter-reset: quiz-item;
+}
+
+/* overflow: hidden; esconda o transbordamento */
+
+.quiz-item {
+  margin-top: 24px;
+  border: 1px solid #475569;
+  border-radius: 6px;
+
+  overflow: hidden;
+}
+
+/* da mesma forma podemos colocar uma class que esta na tag pai e seguido da tag filho para estilizar algo separadamente */
+
+.quiz-item h3 {
+  padding: 16px 20px;
+  color: #E2E8F0;
+  background-color: #1E293B;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* estamos criando um pseudo elemento e fazendo ele entender com o incremente que ele vai contar e acrescentar
+flex-shrink: 0; colocamos como zero justamente para ele não tentar se encolher ficar desconfigurado
+ */
+
+.quiz-item h3::before{
+  counter-increment: quiz-item;
+  content: counter(quiz-item);
+
+  background-color: #475569;
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* neste caso estamos colocando o display grid no pai, e logo quando colocamos um gap ele estende que o filho tem um gap de espaçamento, ou seja no dt */
+
+.quiz-item dl {
+  padding: 20px 24px;
+
+  display: grid;
+  gap: 8px;
+}
+
+/* font-weight: 400; é o peso da letra, 400 é o padrão, se colocar 700 vai ficar mais vivo, e ir aumentando
+letter-spacing: 0; é o espaço entre uma letra e outra
+line-height: 24px; Essa propriedade tem o objetivo de definir a altura da caixa (linha) que um conteúdo de texto pertence */
+
+.quiz-item dl dt {
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #E2E8F0;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* all: unset; estou tirando a formatação nativa dele
+  display: flex; bloco ao lado de bloco
+  align-items: center; center no eixo X
+  justify-content: center; center no eixo Y
+*/
+
+input {
+  all: unset;
+
+  width:  16px;
+  height: 16px;
+
+  border: 1px solid #94a3b8;
+  border-radius: 50%;
+
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+input:checked{
+  border: 1px solid #A3E635;
+}
+
+input:checked::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+
+  background-color: #A3E635;
+  border-radius: 50%;
+}
+
+/* estamos estilizando o texto ao centro, a cor de fundo do bloco, a posição e tamanho do bloco */
+
+#acertos {
+  text-align: center;
+  background-color: #A3E635;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+}

@@ -1,0 +1,23 @@
+  <!-- TAGS:
+  H1 ao H6 usados em títulos, h1 texto maior h6 texto menor
+  DIV tag genérica para separar container (blocos)
+  DL tag que indica que a seguir vai ter uma lista/glossario
+  DT tag que indica o item, em uma DL pode ter mais de uma DT
+  span tag que faz com que o que tiver envolvido nela fique ao lado da tag anterior
+  input tag (sem fechamento) responsável pela interação com o usuário
+  A tag template contém conteúdo que está oculto ao usuário, mas que será usado para instanciar código HTML repetidamente. Usando JavaScript, 
+    é possível renderizar esse conteúdo com o método cloneNode(), eu vou indicar quando quero que vai aparecer no html.
+
+  Colocamos um ID com uma DIV fora do template pois é nela que vamos usar para modificar e clonar pelo JavaScript
+  Conteudo principal vai dentro da tag main
+  Usamos a TAG Strong para deixar em Negrito
+  header - cabeçalho - representa um grupo de suporte introdutório ou navegacional. Pode conter alguns elementos de cabeçalho mas também outros elementos como um logo, 
+  seções de cabeçalho, formulário de pesquisa, e outros
+
+
+  Metodos
+  Podemos colocar metodos dentro das TAGS exemplo
+  Class vamos classificar uma tag, muito usado para depois estilizar no CSS 
+  type atributo usado nesse caso de exempo no imput, é o tipo nesse caso usamos o radio, que é para o usuário conseguir selecionar apenas uma opção,
+    muito usado em questionário, formulários (sexo masc ou fem), ou seja é um tipo excludente, junto colocamos name e value para se entender 
+    que só pode selecionar um e até usarmos no posteriomente como no JS -->

@@ -1,0 +1,17 @@
+Modelo de pergunta para o chat GPT para criar o quiz no JS, só mudar o nome do tópico, nesse usamos fundamentos de JavaScript, mas pode ser
+qualquer assunto:
+
+Crie 10 perguntas sobre o tópico Fundamentos de JavaScript com 3 opções de resposta e uma resposta correta, para compor um aplicativo em javacript. Responda em essa estrutura de dados do exemplo abaixo:
+
+const perguntas = [
+  {
+    pergunta: "Pergunta 01",
+    resposta: [
+      "Resposta A",
+      "Resposta B",
+      "Resposta C",
+    ],
+    correta: 2
+  }
+]
+
